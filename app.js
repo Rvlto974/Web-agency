@@ -1,4 +1,7 @@
-// Gestion de la navigation active et smooth scroll
+// ============================================
+// GESTION DE LA NAVIGATION ACTIVE ET SMOOTH SCROLL
+// ============================================
+
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -59,93 +62,228 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialiser au chargement
     updateActiveNav();
-});
 
-// ============================================
-// CARROUSEL / SLIDER
-// ============================================
+    // ============================================
+    // CARROUSEL / SLIDER
+    // ============================================
 
-// Liste des images du slider
-const sliderImages = [
-    './assets/slider/bg1.jpg',
-    './assets/slider/bg2.jpg',
+    // Données complètes du slider (images + contenu)
+    const sliderData = [
+        {
+            image: './assets/slider/bg1.jpg',
+            title: 'WEBAGENCY : L\'AGENCE DE TOUS VOS PROJETS!',
+            description: 'Vous avez un projet web? La Webagency vous aide à le réaliser.'
+        },
+        {
+            image: './assets/slider/bg2.jpg',
+            title: 'DES SOLUTIONS INNOVANTES',
+            description: 'Notre équipe crée des solutions web sur mesure pour votre entreprise.'
+        }
+        // Ajoutez d'autres slides ici si nécessaire
+    ];
 
-    // Ajoutez d'autres images ici
-];
+    let currentSlideIndex = 0;
+    let autoPlayInterval;
 
-let currentSlideIndex = 0;
-let autoPlayInterval;
-
-// Fonction pour changer de slide
-function changeSlide(direction) {
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (!heroImage || sliderImages.length <= 1) {
-        return;
+    // Fonction pour changer de slide
+    function changeSlide(direction) {
+        const heroImage = document.querySelector('.hero-image');
+        const heroContent = document.querySelector('.hero-content');
+        
+        if (!heroImage || sliderData.length <= 1) {
+            return;
+        }
+        
+        // Calculer le nouvel index avec modulo pour boucler
+        currentSlideIndex = (currentSlideIndex + direction + sliderData.length) % sliderData.length;
+        
+        // Récupérer les données du slide
+        const slide = sliderData[currentSlideIndex];
+        
+        // Effet de transition
+        heroImage.style.opacity = '0';
+        
+        setTimeout(() => {
+            // Mettre à jour l'image ET le contenu
+            heroImage.src = slide.image;
+            heroImage.alt = slide.title;
+            
+            // Mettre à jour le titre et la description
+            if (heroContent) {
+                const titleElement = heroContent.querySelector('h1');
+                const descriptionElement = heroContent.querySelector('p');
+                
+                if (titleElement) {
+                    titleElement.innerHTML = slide.title.replace('WEBAGENCY', '<span class="logo-name">WEBAGENCY</span>');
+                }
+                if (descriptionElement) {
+                    descriptionElement.textContent = slide.description;
+                }
+            }
+            
+            heroImage.style.opacity = '1';
+        }, 500);
+        
+        // Mettre à jour les indicateurs si ils existent
+        updateIndicators();
     }
-    
-    // Calculer le nouvel index
-    currentSlideIndex += direction;
-    
-    // Boucler sur les images
-    if (currentSlideIndex < 0) {
-        currentSlideIndex = sliderImages.length - 1;
-    } else if (currentSlideIndex >= sliderImages.length) {
-        currentSlideIndex = 0;
+
+    // Fonction pour aller directement à un slide spécifique
+    function goToSlide(index) {
+        if (index >= 0 && index < sliderData.length) {
+            const direction = index > currentSlideIndex ? 1 : -1;
+            currentSlideIndex = index - direction;
+            changeSlide(direction);
+        }
     }
-    
-    // Effet de transition
-    heroImage.style.opacity = '0';
-    heroImage.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        heroImage.src = sliderImages[currentSlideIndex];
-        heroImage.style.opacity = '1';
-    }, 500);
-}
 
-// Auto-play (défilement automatique toutes les 5 secondes)
-function startAutoPlay() {
-    if (sliderImages.length > 1) {
-        autoPlayInterval = setInterval(() => {
-            changeSlide(1);
-        }, 5000); // Change toutes les 5 secondes
-    }
-}
-
-function stopAutoPlay() {
-    clearInterval(autoPlayInterval);
-}
-
-// Initialisation au chargement
-document.addEventListener('DOMContentLoaded', function() {
-    const prevArrow = document.querySelector('.slider-arrow.prev');
-    const nextArrow = document.querySelector('.slider-arrow.next');
-    const heroSection = document.querySelector('.hero-section');
-    
-    // Écouter les clics sur les flèches
-    if (prevArrow) {
-        prevArrow.addEventListener('click', () => {
-            changeSlide(-1);
-            stopAutoPlay(); // Arrêter l'auto-play quand on clique
-            setTimeout(startAutoPlay, 10000); // Redémarrer après 10 secondes
+    // Mettre à jour les indicateurs visuels
+    function updateIndicators() {
+        const indicators = document.querySelectorAll('.slider-indicators .slider-dot');
+        indicators.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlideIndex);
         });
     }
-    
-    if (nextArrow) {
-        nextArrow.addEventListener('click', () => {
-            changeSlide(1);
-            stopAutoPlay();
-            setTimeout(startAutoPlay, 10000);
+
+    // Créer les indicateurs de slide (points en bas)
+    function createIndicators() {
+        if (sliderData.length <= 1) return;
+        
+        const indicatorsContainer = document.createElement('div');
+        indicatorsContainer.className = 'slider-indicators';
+        
+        sliderData.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000);
+            });
+            indicatorsContainer.appendChild(dot);
+        });
+        
+        document.querySelector('.hero-section').appendChild(indicatorsContainer);
+    }
+
+    // Auto-play (défilement automatique toutes les 5 secondes)
+    function startAutoPlay() {
+        if (sliderData.length > 1) {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Initialisation du carrousel
+    function initCarousel() {
+        const prevArrow = document.querySelector('.slider-arrow.prev');
+        const nextArrow = document.querySelector('.slider-arrow.next');
+        const heroSection = document.querySelector('.hero-section');
+        
+        // Créer les indicateurs si on a plusieurs slides
+        if (sliderData.length > 1) {
+            createIndicators();
+        }
+        
+        // Écouter les clics sur les flèches
+        if (prevArrow) {
+            prevArrow.addEventListener('click', () => {
+                changeSlide(-1);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000);
+            });
+        }
+        
+        if (nextArrow) {
+            nextArrow.addEventListener('click', () => {
+                changeSlide(1);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000);
+            });
+        }
+        
+        // Pause au survol
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', stopAutoPlay);
+            heroSection.addEventListener('mouseleave', startAutoPlay);
+        }
+        
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000);
+            }
+        });
+        
+        // Pause quand la page n'est pas visible
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+        });
+        
+        // Démarrer l'auto-play
+        startAutoPlay();
+    }
+
+    // ============================================
+    // FILTRES PORTFOLIO
+    // ============================================
+
+    function initPortfolioFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Retirer la classe active de tous les boutons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Ajouter la classe active au bouton cliqué
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Filtrer les projets avec animation
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
         });
     }
+
+    // ============================================
+    // INITIALISATION GÉNÉRALE
+    // ============================================
+
+    // Initialiser le carrousel
+    initCarousel();
     
-    // Pause au survol
-    if (heroSection) {
-        heroSection.addEventListener('mouseenter', stopAutoPlay);
-        heroSection.addEventListener('mouseleave', startAutoPlay);
-    }
-    
-    // Démarrer l'auto-play
-    startAutoPlay();
+    // Initialiser les filtres du portfolio
+    initPortfolioFilters();
 });

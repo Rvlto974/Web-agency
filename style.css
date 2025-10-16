@@ -248,7 +248,7 @@ nav {
     letter-spacing: 1px;
 }
 
-.ligne-separation {
+.separator {
     width: 250px;  /* ← Trait plus court comme sur la photo */
     height: 2px;
     background: #d0d0d0;
@@ -505,7 +505,67 @@ html {
 }
 
 
+/* ============================================
+    INDICATEURS DU CARROUSEL
+   ============================================ */
+.slider-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
 
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active,
+.slider-dot:hover {
+    background: #2FB8C4;
+    border-color: white;
+    transform: scale(1.2);
+}
+
+/* ============================================
+    ANIMATIONS PORTFOLIO
+   ============================================ */
+.portfolio-item {
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+    RESPONSIVE CARROUSEL
+   ============================================ */
+@media (max-width: 768px) {
+    .slider-indicators {
+        bottom: 20px;
+    }
+    
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-indicators {
+        bottom: 15px;
+    }
+    
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
 /* ============================================
     FILTRES PORTFOLIO
     Style des boutons de filtrage
