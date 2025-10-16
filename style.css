@@ -12,6 +12,7 @@ body {
     font-family: 'Open Sans', Arial, sans-serif;
     color: #666;
     font-weight: 400;
+    background: white;
 }
 
 h1, h2, h3 {
@@ -41,7 +42,6 @@ nav {
     margin: 0 auto;
 }
 
-/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -61,7 +61,6 @@ nav {
     display: none;
 }
 
-/* Navigation */
 .nav-links {
     display: flex;
     list-style: none;
@@ -96,8 +95,17 @@ nav {
     width: 100%;
 }
 
+.nav-links a.active {
+    color: #2FB8C4;
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
 /* ============================================
-    3. SECTION HERO
+   3. SECTION HERO
    ============================================ */
 
 .hero-section {
@@ -152,7 +160,7 @@ nav {
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #f1f1f1;
+    color: #ffffff;
 }
 
 .hero-content h1 .logo-name {
@@ -164,6 +172,7 @@ nav {
     margin-bottom: 30px;
     line-height: 1.6;
     font-weight: 400;
+    color: #ffffff;
 }
 
 .btn-info {
@@ -188,20 +197,15 @@ nav {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ============================================
-    FLÈCHES DU SLIDER
-   ============================================ */
-
-  /* FLÈCHES NOIRES */
-  .slider-arrow {
+.slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5); /* Noir transparent */
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     width: 50px;
-    height: 80px; /* Plus haut que large */
+    height: 80px;
     font-size: 20px;
     cursor: pointer;
     z-index: 10;
@@ -211,61 +215,57 @@ nav {
     justify-content: center;
 }
 
-/* Flèche GAUCHE - Demi-cercle à DROITE */
 .slider-arrow.prev {
     left: 0;
-    border-radius: 0 100px 100px 0; /* Arrondi à droite seulement */
+    border-radius: 0 100px 100px 0;
 }
 
-/* Flèche DROITE - Demi-cercle à GAUCHE */
 .slider-arrow.next {
     right: 0;
-    border-radius: 100px 0 0 100px; /* Arrondi à gauche seulement */
+    border-radius: 100px 0 0 100px;
 }
 
 .slider-arrow:hover {
     background: rgba(0, 0, 0, 0.7);
-    transform: translateY(-50%) scale(1.05);
 }
+
 /* ============================================
-   SECTION SERVICES
+   4. SECTION SERVICES
    ============================================ */
 
 .services-section {
     padding: 80px 80px;
-    background: white;
+    background: #f8f9fa;
     text-align: center;
 }
 
 .services-section h2 {
     font-size: 36px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     color: #333;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
-.separator {
-    position: relative;
-    width: 150px;
-    height: 3px;
-    background: #2FB8C4;
+.ligne-separation {
+    width: 250px;  /* ← Trait plus court comme sur la photo */
+    height: 2px;
+    background: #d0d0d0;
     margin: 0 auto 35px;
-    display: block;
+    position: relative;
 }
 
-.separator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.point-central {
     width: 14px;
     height: 14px;
     background: #2FB8C4;
     border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 0 0 2px #2FB8C4;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid white;
+    z-index: 2;
 }
 
 .services-description {
@@ -277,7 +277,106 @@ nav {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+    5. SECTION SERVICES DÉTAILLÉS
+   ============================================ */
+
+.services-details {
+    padding: 80px 0;
+    background: white;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.services-image {
+    text-align: center;
+}
+
+.services-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.service-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.service-icon {
+    flex-shrink: 0;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: #2FB8C4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.icon-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid #2FB8C4;
+}
+
+.service-item:hover .icon-circle {
+    background: #2695a0;
+    transform: scale(1.05);
+}
+
+.service-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.service-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+/* ============================================
+    6. SMOOTH SCROLL
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+    7. RESPONSIVE DESIGN
    ============================================ */
 
 @media (max-width: 768px) {
@@ -293,20 +392,6 @@ nav {
         font-size: 28px;
     }
     
-    .slider-arrow {
-        width: 50px;
-        height: 50px;
-        font-size: 16px;
-    }
-    
-    .slider-arrow.prev {
-        left: 20px;
-    }
-    
-    .slider-arrow.next {
-        right: 20px;
-    }
-    
     .services-section {
         padding: 60px 20px;
     }
@@ -317,6 +402,25 @@ nav {
     
     .nav-links {
         gap: 20px;
+    }
+    
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+    
+    .services-image {
+        order: 2;
+    }
+    
+    .services-list {
+        order: 1;
+    }
+    
+    .ligne-separation {
+        width: 90%;
+        max-width: 400px;
     }
 }
 
@@ -330,17 +434,37 @@ nav {
         font-size: 14px;
     }
     
-    .slider-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 14px;
-    }
-    
     .services-section h2 {
         font-size: 24px;
     }
     
-    .separator {
-        width: 120px;
+    .ligne-separation {
+        width: 80%;
+    }
+    
+    .point-central {
+        width: 12px;
+        height: 12px;
+        border: 2px solid white;
+    }
+    
+    .service-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+        margin: 0 auto;
+    }
+    
+    .icon-dot {
+        width: 10px;
+        height: 10px;
+        top: 6px;
+        right: 6px;
     }
 }
