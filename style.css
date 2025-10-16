@@ -1,6 +1,7 @@
 /* ============================================
-   RESET ET STYLES DE BASE
+    1. RESET CSS - TOUJOURS EN PREMIER
    ============================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,26 +11,22 @@
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     color: #666;
-    line-height: 1.6;
+    font-weight: 400;
     background: #ffffff;
-    overflow-x: hidden;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-.container-fix {
-    max-width: 100%;
-    overflow-x: hidden;
+h1, h2, h3 {
+    font-weight: 700;
+    color: #333;
 }
 
 /* ============================================
-   HEADER ET NAVIGATION
+    2. HEADER
    ============================================ */
+
 header {
     background: white;
-    padding: 15px 5%;
+    padding: 15px 80px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
@@ -61,12 +58,13 @@ nav {
     font-weight: bold;
     color: #2FB8C4;
     letter-spacing: 1px;
+    display: none;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 35px;
+    gap: 45px;
 }
 
 .nav-links a {
@@ -76,7 +74,6 @@ nav {
     transition: all 0.3s;
     font-weight: 400;
     position: relative;
-    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -108,33 +105,29 @@ nav {
 }
 
 /* ============================================
-   SECTION HERO / CARROUSEL
+    3. SECTION HERO
    ============================================ */
+
 .hero-section {
     margin-top: 75px;
     position: relative;
-    width: 100%;
-    height: 70vh;
-    min-height: 500px;
-    max-height: 700px;
+    height: 100vh;
+    min-height: 600px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
-.hero-slide {
+.hero-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.hero-slide.active {
-    opacity: 1;
+    object-fit: cover;
+    object-position: right center;
+    z-index: 0;
+    transition: opacity 0.5s ease; /* ← Important pour la transition */
 }
 
 .hero-overlay {
@@ -154,24 +147,19 @@ nav {
 }
 
 .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
+    position: relative;
     z-index: 2;
-    width: 90%;
-    max-width: 800px;
-    padding: 0 20px;
+    color: #ffffff;
+    padding: 0 80px;
+    max-width: 700px;
 }
 
 .hero-content h1 {
-    font-size: 36px;
+    font-size: 42px;
     margin-bottom: 25px;
     line-height: 1.3;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: #ffffff;
 }
@@ -210,12 +198,11 @@ nav {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Flèches du carrousel */
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(47, 184, 196, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     width: 50px;
@@ -240,14 +227,15 @@ nav {
 }
 
 .slider-arrow:hover {
-    background: rgba(47, 184, 196, 1);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 /* ============================================
-   SECTION SERVICES
+    4. SECTION SERVICES
    ============================================ */
+
 .services-section {
-    padding: 80px 5%;
+    padding: 80px 80px;
     background: #f8f9fa;
     text-align: center;
 }
@@ -261,7 +249,7 @@ nav {
 }
 
 .separator {
-    width: 250px;
+    width: 250px;  /* ← Trait plus court comme sur la photo */
     height: 2px;
     background: #d0d0d0;
     margin: 0 auto 35px;
@@ -287,12 +275,12 @@ nav {
     color: #666;
     max-width: 850px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 /* ============================================
-   SECTION SERVICES DÉTAILLÉS
+    5. SECTION SERVICES DÉTAILLÉS
    ============================================ */
+
 .services-details {
     padding: 80px 0;
     background: white;
@@ -301,7 +289,7 @@ nav {
 .services-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
@@ -381,8 +369,112 @@ nav {
 }
 
 /* ============================================
-   SECTION PORTFOLIO
+    6. SMOOTH SCROLL
    ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+    7. RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    
+    .hero-content {
+        padding: 0 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .services-section {
+        padding: 60px 20px;
+    }
+    
+    .services-section h2 {
+        font-size: 28px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+    
+    .services-image {
+        order: 2;
+    }
+    
+    .services-list {
+        order: 1;
+    }
+    
+    .ligne-separation {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 22px;
+    }
+    
+    .btn-info {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+    
+    .services-section h2 {
+        font-size: 24px;
+    }
+    
+    .ligne-separation {
+        width: 80%;
+    }
+    
+    .point-central {
+        width: 12px;
+        height: 12px;
+        border: 2px solid white;
+    }
+    
+    .service-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+        margin: 0 auto;
+    }
+    
+    .icon-dot {
+        width: 10px;
+        height: 10px;
+        top: 6px;
+        right: 6px;
+    }
+}
+
+/* ============================================
+    9. SECTION PORTFOLIO
+    Style pour l'affichage des projets réalisés
+   ============================================ */
+
 .portfolio-section {
     padding: 80px 0;
     background: white;
@@ -391,7 +483,7 @@ nav {
 .portfolio-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 80px;
 }
 
 .portfolio-section h2 {
@@ -410,16 +502,80 @@ nav {
     max-width: 850px;
     margin: 0 auto 50px;
     text-align: center;
-    padding: 0 20px;
 }
 
-/* Filtres Portfolio */
+
+/* ============================================
+    INDICATEURS DU CARROUSEL
+   ============================================ */
+.slider-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active,
+.slider-dot:hover {
+    background: #2FB8C4;
+    border-color: white;
+    transform: scale(1.2);
+}
+
+/* ============================================
+    ANIMATIONS PORTFOLIO
+   ============================================ */
+.portfolio-item {
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+    RESPONSIVE CARROUSEL
+   ============================================ */
+@media (max-width: 768px) {
+    .slider-indicators {
+        bottom: 20px;
+    }
+    
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-indicators {
+        bottom: 15px;
+    }
+    
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+/* ============================================
+    FILTRES PORTFOLIO
+    Style des boutons de filtrage
+   ============================================ */
 .portfolio-filters {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 50px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permet le retour à la ligne sur mobile */
 }
 
 .filter-btn {
@@ -427,16 +583,16 @@ nav {
     border: 2px solid #2FB8C4;
     color: #2FB8C4;
     padding: 10px 25px;
-    border-radius: 25px;
+    border-radius: 25px; /* Boutons arrondis */
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    white-space: nowrap;
 }
 
+/* État actif et survol des filtres */
 .filter-btn:hover,
 .filter-btn.active {
     background: #2FB8C4;
@@ -445,21 +601,25 @@ nav {
     box-shadow: 0 5px 15px rgba(47, 184, 196, 0.3);
 }
 
-/* Grille Portfolio */
+/* ============================================
+    GRILLE PORTFOLIO
+    Mise en page responsive des projets
+   ============================================ */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
 }
 
 .portfolio-item {
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden; /* Cache ce qui dépasse */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     position: relative;
 }
 
+/* Effet au survol de la carte projet */
 .portfolio-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
@@ -468,35 +628,40 @@ nav {
 .portfolio-image {
     position: relative;
     overflow: hidden;
-    height: 280px;
+    aspect-ratio: 4/3; /* Ratio d'image constant */
 }
 
 .portfolio-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Couvre tout l'espace sans déformation */
     transition: transform 0.3s ease;
 }
 
+/* Zoom sur l'image au survol */
 .portfolio-item:hover .portfolio-image img {
     transform: scale(1.1);
 }
 
-/* Overlay Portfolio */
+/* ============================================
+    OVERLAY AU SURVOL
+    Informations qui apparaissent sur l'image
+   ============================================ */
 .portfolio-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(47, 184, 196, 0.9);
+    background: rgba(47, 184, 196, 0.9); /* Bleu semi-transparent */
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    opacity: 0; /* Caché par défaut */
     transition: all 0.3s ease;
 }
 
+/* Affichage de l'overlay au survol */
 .portfolio-item:hover .portfolio-overlay {
     opacity: 1;
 }
@@ -504,12 +669,12 @@ nav {
 .portfolio-content {
     text-align: center;
     color: white;
-    transform: translateY(20px);
+    transform: translateY(20px); /* Animation d'entrée */
     transition: transform 0.3s ease;
 }
 
 .portfolio-item:hover .portfolio-content {
-    transform: translateY(0);
+    transform: translateY(0); /* Position finale */
 }
 
 .portfolio-content h3 {
@@ -524,7 +689,10 @@ nav {
     opacity: 0.9;
 }
 
-/* Liens Portfolio */
+/* ============================================
+    LIENS D'ACTION
+    Icônes de visualisation et lien externe
+   ============================================ */
 .portfolio-links {
     display: flex;
     gap: 15px;
@@ -551,8 +719,65 @@ nav {
 }
 
 /* ============================================
-   SECTION CONTACT
+    RESPONSIVE PORTFOLIO
+    Adaptations pour tablettes et mobiles
    ============================================ */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 0 20px;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 28px;
+    }
+    
+    .portfolio-filters {
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-section {
+        padding: 60px 0;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 24px;
+    }
+    
+    .portfolio-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-content h3 {
+        font-size: 18px;
+    }
+    
+    .portfolio-content p {
+        font-size: 13px;
+    }
+}
+
+/* SECTION CONTACT - VERSION SIMPLE */
 .contact-section {
     padding: 80px 0;
     background: white;
@@ -565,12 +790,11 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 .contact-map {
-    max-width: 1200px;
-    width: 90%;
+    max-width: 1800px;
+    width: 90%; /* 90% de la largeur sur mobile */
 }
 
 .map-image {
@@ -579,430 +803,4 @@ nav {
     display: block;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* ============================================
-   CORRECTIONS SPÉCIFIQUES TABLETTE
-   ============================================ */
-
-/* Tablettes en mode portrait (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    /* Header */
-    header {
-        padding: 12px 4%;
-    }
-    
-    .nav-links {
-        gap: 25px;
-    }
-    
-    .nav-links a {
-        font-size: 14px;
-    }
-    
-    .logo-text {
-        font-size: 20px;
-    }
-    
-    /* Hero Section */
-    .hero-section {
-        height: 60vh;
-        min-height: 450px;
-        max-height: 600px;
-        margin-top: 70px;
-    }
-    
-    .hero-content h1 {
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
-    
-    .hero-content p {
-        font-size: 16px;
-        margin-bottom: 25px;
-    }
-    
-    .btn-info {
-        padding: 10px 25px;
-        font-size: 15px;
-    }
-    
-    .slider-arrow {
-        width: 45px;
-        height: 70px;
-        font-size: 18px;
-    }
-    
-    /* Services Section */
-    .services-section {
-        padding: 70px 4%;
-    }
-    
-    .services-section h2 {
-        font-size: 32px;
-    }
-    
-    .services-container {
-        grid-template-columns: 1fr;
-        gap: 50px;
-        padding: 0 4%;
-    }
-    
-    .services-image {
-        order: 2;
-    }
-    
-    .services-list {
-        order: 1;
-        gap: 35px;
-    }
-    
-    .service-item {
-        gap: 18px;
-    }
-    
-    .icon-circle {
-        width: 65px;
-        height: 65px;
-        font-size: 22px;
-    }
-    
-    .service-content h3 {
-        font-size: 17px;
-    }
-    
-    .service-content p {
-        font-size: 14px;
-    }
-    
-    /* Portfolio Section */
-    .portfolio-section {
-        padding: 70px 0;
-    }
-    
-    .portfolio-container {
-        padding: 0 4%;
-    }
-    
-    .portfolio-section h2 {
-        font-size: 32px;
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .portfolio-image {
-        height: 250px;
-    }
-    
-    .portfolio-filters {
-        gap: 12px;
-        margin-bottom: 40px;
-    }
-    
-    .filter-btn {
-        padding: 9px 20px;
-        font-size: 13px;
-    }
-    
-    /* Contact Section */
-    .contact-section {
-        padding: 70px 0;
-    }
-    
-    .contact-map {
-        width: 95%;
-    }
-}
-
-/* Tablettes en mode paysage (1024px - 1200px) */
-@media (min-width: 1025px) and (max-width: 1200px) {
-    .services-container {
-        gap: 50px;
-        padding: 0 4%;
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-    
-    .portfolio-image {
-        height: 260px;
-    }
-    
-    .nav-links {
-        gap: 30px;
-    }
-}
-
-/* ============================================
-   RESPONSIVE DESIGN GÉNÉRAL
-   ============================================ */
-
-/* Grands mobiles (641px - 767px) */
-@media (max-width: 767px) {
-    header {
-        padding: 10px 3%;
-    }
-    
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .logo {
-        margin-bottom: 8px;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .nav-links {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-links a {
-        font-size: 13px;
-        padding: 4px 8px;
-        background: #f8f9fa;
-        border-radius: 15px;
-    }
-    
-    .nav-links a::after {
-        display: none;
-    }
-    
-    .logo-text {
-        font-size: 18px;
-    }
-    
-    .hero-section {
-        margin-top: 85px;
-        height: 50vh;
-        min-height: 350px;
-    }
-    
-    .hero-content h1 {
-        font-size: 24px;
-    }
-    
-    .hero-content p {
-        font-size: 15px;
-    }
-    
-    .btn-info {
-        padding: 9px 22px;
-        font-size: 14px;
-    }
-    
-    .slider-arrow {
-        width: 40px;
-        height: 60px;
-        font-size: 16px;
-    }
-    
-    .services-section {
-        padding: 60px 3%;
-    }
-    
-    .services-section h2 {
-        font-size: 28px;
-    }
-    
-    .services-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 3%;
-    }
-    
-    .services-image img {
-        max-width: 85%;
-    }
-    
-    .services-list {
-        gap: 30px;
-    }
-    
-    .service-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-        padding: 15px;
-        background: #f8f9fa;
-        border-radius: 8px;
-    }
-    
-    .icon-circle {
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
-        margin: 0 auto;
-    }
-    
-    .portfolio-container {
-        padding: 0 3%;
-    }
-    
-    .portfolio-section h2 {
-        font-size: 28px;
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .portfolio-image {
-        height: 220px;
-    }
-    
-    .portfolio-filters {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .filter-btn {
-        width: 200px;
-    }
-}
-
-/* Mobiles (481px - 640px) */
-@media (max-width: 640px) {
-    .hero-section {
-        height: 45vh;
-        min-height: 300px;
-    }
-    
-    .hero-content h1 {
-        font-size: 22px;
-    }
-    
-    .services-section h2,
-    .portfolio-section h2 {
-        font-size: 26px;
-    }
-    
-    .separator {
-        width: 200px;
-    }
-    
-    .service-content h3 {
-        font-size: 16px;
-    }
-    
-    .service-content p {
-        font-size: 13px;
-    }
-}
-
-/* Petits mobiles (<= 480px) */
-@media (max-width: 480px) {
-    .hero-section {
-        height: 40vh;
-        min-height: 250px;
-        margin-top: 75px;
-    }
-    
-    .hero-content h1 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-    
-    .hero-content p {
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-    
-    .btn-info {
-        padding: 8px 20px;
-        font-size: 13px;
-    }
-    
-    .slider-arrow {
-        width: 35px;
-        height: 50px;
-        font-size: 14px;
-    }
-    
-    .services-section,
-    .services-details,
-    .portfolio-section,
-    .contact-section {
-        padding: 50px 0;
-    }
-    
-    .services-section {
-        padding: 50px 15px;
-    }
-    
-    .services-section h2,
-    .portfolio-section h2 {
-        font-size: 24px;
-    }
-    
-    .services-container {
-        padding: 0 15px;
-        gap: 30px;
-    }
-    
-    .services-image img {
-        max-width: 90%;
-    }
-    
-    .services-list {
-        gap: 25px;
-    }
-    
-    .service-item {
-        padding: 12px;
-    }
-    
-    .icon-circle {
-        width: 55px;
-        height: 55px;
-        font-size: 18px;
-    }
-    
-    .portfolio-container {
-        padding: 0 15px;
-    }
-    
-    .portfolio-image {
-        height: 200px;
-    }
-    
-    .portfolio-content h3 {
-        font-size: 18px;
-    }
-    
-    .portfolio-content p {
-        font-size: 13px;
-    }
-    
-    .portfolio-links a {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .contact-map {
-        width: 95%;
-    }
-}
-
-/* Très grands écrans */
-@media (min-width: 1600px) {
-    .hero-section {
-        height: 80vh;
-        max-height: 900px;
-    }
-    
-    .services-container,
-    .portfolio-container {
-        max-width: 1400px;
-    }
 }

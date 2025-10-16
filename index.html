@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webagency - L'agence de tous vos projets</title>
-    
+
     <!-- Google Fonts - Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,7 +28,7 @@
                 <img src="./assets/images/logo.png" alt="Logo Webagency" class="logo-img">
                 <span class="logo-text">WEBAGENCY</span>
             </div>
-            
+
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#services">Services</a></li>
@@ -38,44 +38,44 @@
         </nav>
     </header>
 
-    <<!-- SECTION HERO -->
-<section class="hero-section" id="accueil">
-    <!-- Remplacement de l'image par un div avec background -->
-    <div class="hero-slide active" style="background-image: url('./assets/slider/bg1.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('./assets/slider/bg2.jpg');"></div>
-    
-    <!-- Overlay (fond sombre) -->
-    <div class="hero-overlay"></div>
-    
-    <!-- Contenu texte -->
-    <div class="hero-content">
-        <h1>
-            <span class="logo-name">WEBAGENCY</span> : L'AGENCE DE TOUS<br>
-            VOS PROJETS!
-        </h1>
-        <p>Vous avez un projet web? La Webagency vous aide à le réaliser.</p>
-        <a href="#services" class="btn-info">Plus d'infos</a>
-    </div>
-    
-    <!-- Flèches -->
-    <button class="slider-arrow prev">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="slider-arrow next">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-</section>
+    <!-- SECTION HERO -->
+    <section class="hero-section" id="accueil">
+        <!-- Image -->
+        <img src="./assets/slider/bg1.jpg" alt="Petite fille avec mains colorées" class="hero-image">
+
+        <!-- Overlay (fond sombre) -->
+        <div class="hero-overlay"></div>
+
+        <!-- Contenu texte -->
+        <div class="hero-content">
+            <h1>
+                <span class="logo-name">WEBAGENCY</span> : L'AGENCE DE TOUS<br>
+                VOS PROJETS!
+            </h1>
+            <p>Vous avez un projet web? La Webagency vous aide à le réaliser.</p>
+            <a href="#services" class="btn-info">Plus d'infos</a>
+        </div>
+
+        <!-- Flèches -->
+        <button class="slider-arrow prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </section>
     <!--FIN SECTION HERO-->
 
     <!-- SECTION SERVICES -->
     <section class="services-section" id="services">
         <h2>NOS SERVICES</h2>
-        
+
+        <!-- BARRE AVEC POINT -->
         <!-- Barre de séparation avec boule -->
         <div class="separator">
             <div class="point-central"></div>
         </div>
-        
+
         <p class="services-description">
             De taille humaine, notre agence vous accompagne du début à la fin de votre projet. 
             Nos experts vous aident à optimiser l'expérience utilisateur et tirer le meilleur 
@@ -139,25 +139,25 @@
         </div>
     </section>
     <!--FIN SECTION SERVICES DÉTAILLÉS-->
-    
+
     <!-- SECTION PORTFOLIO -->
     <section class="portfolio-section" id="portfolio">
         <div class="portfolio-container">
-            
+
             <!-- Titre principal de la section -->
             <h2>NOS PROJETS</h2>
-            
+
             <!-- Barre de séparation décorative -->
             <div class="separator">
                 <div class="point-central"></div>
             </div>
-            
+
             <!-- Description de la section -->
             <p class="portfolio-description">
                 Découvrez nos réalisations pour nos clients. Chaque projet est une nouvelle aventure 
                 qui nous permet de repousser les limites du design et du développement web.
             </p>
-            
+
             <!-- FILTRES PORTFOLIO -->
             <div class="portfolio-filters">
                 <!-- Bouton "Tous" actif par défaut -->
@@ -169,10 +169,10 @@
                 <!-- Bouton filtre Portfolio -->
                 <button class="filter-btn" data-filter="portfolio">Portfolio</button>
             </div>
-            
+
             <!-- GRILLE DES PROJETS -->
             <div class="portfolio-grid">
-                
+
                 <!-- PROJET 1 - Catégorie Créations -->
                 <div class="portfolio-item" data-category="creations">
                     <div class="portfolio-image">
@@ -201,7 +201,7 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 1 -->
-                
+
                 <!-- PROJET 2 - Catégorie Corporate -->
                 <div class="portfolio-item" data-category="corporate">
                     <div class="portfolio-image">
@@ -223,7 +223,7 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 2 -->
-                
+
                 <!-- PROJET 3 - Catégorie Portfolio -->
                 <div class="portfolio-item" data-category="portfolio">
                     <div class="portfolio-image">
@@ -245,7 +245,7 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 3 -->
-                
+
                 <!-- PROJET 4 - Catégorie Créations -->
                 <div class="portfolio-item" data-category="creations">
                     <div class="portfolio-image">
@@ -267,7 +267,7 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 4 -->
-                
+
                 <!-- PROJET 5 - Catégorie Corporate -->
                 <div class="portfolio-item" data-category="corporate">
                     <div class="portfolio-image">
@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 5 -->
-                
+
                 <!-- PROJET 6 - Catégorie Portfolio -->
                 <div class="portfolio-item" data-category="portfolio">
                     <div class="portfolio-image">
@@ -311,14 +311,14 @@
                     </div>
                 </div>
                 <!-- FIN PROJET 6 -->
-                
+
             </div>
             <!-- FIN GRILLE PORTFOLIO -->
-            
+
         </div>
     </section>
     <!-- FIN SECTION PORTFOLIO -->
-    
+
     <!-- SECTION CONTACT -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
@@ -330,6 +330,8 @@
     </section>
     <!--FIN SECTION CONTACT-->
 
+
+<script src="app.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
