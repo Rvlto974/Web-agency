@@ -105,7 +105,7 @@ nav {
 }
 
 /* ============================================
-   3. SECTION HERO
+    3. SECTION HERO
    ============================================ */
 
 .hero-section {
@@ -127,6 +127,7 @@ nav {
     object-fit: cover;
     object-position: right center;
     z-index: 0;
+    transition: opacity 0.5s ease; /* ← Important pour la transition */
 }
 
 .hero-overlay {
@@ -230,7 +231,7 @@ nav {
 }
 
 /* ============================================
-   4. SECTION SERVICES
+    4. SECTION SERVICES
    ============================================ */
 
 .services-section {
@@ -470,8 +471,8 @@ html {
 }
 
 /* ============================================
-   9. SECTION PORTFOLIO
-   Style pour l'affichage des projets réalisés
+    9. SECTION PORTFOLIO
+    Style pour l'affichage des projets réalisés
    ============================================ */
 
 .portfolio-section {
@@ -503,9 +504,11 @@ html {
     text-align: center;
 }
 
+
+
 /* ============================================
-   FILTRES PORTFOLIO
-   Style des boutons de filtrage
+    FILTRES PORTFOLIO
+    Style des boutons de filtrage
    ============================================ */
 .portfolio-filters {
     display: flex;
@@ -539,8 +542,8 @@ html {
 }
 
 /* ============================================
-   GRILLE PORTFOLIO
-   Mise en page responsive des projets
+    GRILLE PORTFOLIO
+    Mise en page responsive des projets
    ============================================ */
 .portfolio-grid {
     display: grid;
@@ -581,8 +584,8 @@ html {
 }
 
 /* ============================================
-   OVERLAY AU SURVOL
-   Informations qui apparaissent sur l'image
+    OVERLAY AU SURVOL
+    Informations qui apparaissent sur l'image
    ============================================ */
 .portfolio-overlay {
     position: absolute;
@@ -627,8 +630,8 @@ html {
 }
 
 /* ============================================
-   LIENS D'ACTION
-   Icônes de visualisation et lien externe
+    LIENS D'ACTION
+    Icônes de visualisation et lien externe
    ============================================ */
 .portfolio-links {
     display: flex;
@@ -656,8 +659,8 @@ html {
 }
 
 /* ============================================
-   RESPONSIVE PORTFOLIO
-   Adaptations pour tablettes et mobiles
+    RESPONSIVE PORTFOLIO
+    Adaptations pour tablettes et mobiles
    ============================================ */
 @media (max-width: 768px) {
     .portfolio-container {

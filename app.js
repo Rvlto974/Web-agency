@@ -60,3 +60,92 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialiser au chargement
     updateActiveNav();
 });
+
+// ============================================
+// CARROUSEL / SLIDER
+// ============================================
+
+// Liste des images du slider
+const sliderImages = [
+    './assets/slider/bg1.jpg',
+    './assets/slider/bg2.jpg',
+
+    // Ajoutez d'autres images ici
+];
+
+let currentSlideIndex = 0;
+let autoPlayInterval;
+
+// Fonction pour changer de slide
+function changeSlide(direction) {
+    const heroImage = document.querySelector('.hero-image');
+    
+    if (!heroImage || sliderImages.length <= 1) {
+        return;
+    }
+    
+    // Calculer le nouvel index
+    currentSlideIndex += direction;
+    
+    // Boucler sur les images
+    if (currentSlideIndex < 0) {
+        currentSlideIndex = sliderImages.length - 1;
+    } else if (currentSlideIndex >= sliderImages.length) {
+        currentSlideIndex = 0;
+    }
+    
+    // Effet de transition
+    heroImage.style.opacity = '0';
+    heroImage.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        heroImage.src = sliderImages[currentSlideIndex];
+        heroImage.style.opacity = '1';
+    }, 500);
+}
+
+// Auto-play (défilement automatique toutes les 5 secondes)
+function startAutoPlay() {
+    if (sliderImages.length > 1) {
+        autoPlayInterval = setInterval(() => {
+            changeSlide(1);
+        }, 5000); // Change toutes les 5 secondes
+    }
+}
+
+function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+}
+
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    const prevArrow = document.querySelector('.slider-arrow.prev');
+    const nextArrow = document.querySelector('.slider-arrow.next');
+    const heroSection = document.querySelector('.hero-section');
+    
+    // Écouter les clics sur les flèches
+    if (prevArrow) {
+        prevArrow.addEventListener('click', () => {
+            changeSlide(-1);
+            stopAutoPlay(); // Arrêter l'auto-play quand on clique
+            setTimeout(startAutoPlay, 10000); // Redémarrer après 10 secondes
+        });
+    }
+    
+    if (nextArrow) {
+        nextArrow.addEventListener('click', () => {
+            changeSlide(1);
+            stopAutoPlay();
+            setTimeout(startAutoPlay, 10000);
+        });
+    }
+    
+    // Pause au survol
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopAutoPlay);
+        heroSection.addEventListener('mouseleave', startAutoPlay);
+    }
+    
+    // Démarrer l'auto-play
+    startAutoPlay();
+});
