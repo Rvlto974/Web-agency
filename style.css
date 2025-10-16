@@ -468,3 +468,248 @@ html {
         right: 6px;
     }
 }
+
+/* ============================================
+   9. SECTION PORTFOLIO
+   Style pour l'affichage des projets réalisés
+   ============================================ */
+
+.portfolio-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+
+.portfolio-section h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.portfolio-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+    max-width: 850px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+/* ============================================
+   FILTRES PORTFOLIO
+   Style des boutons de filtrage
+   ============================================ */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap; /* Permet le retour à la ligne sur mobile */
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid #2FB8C4;
+    color: #2FB8C4;
+    padding: 10px 25px;
+    border-radius: 25px; /* Boutons arrondis */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* État actif et survol des filtres */
+.filter-btn:hover,
+.filter-btn.active {
+    background: #2FB8C4;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(47, 184, 196, 0.3);
+}
+
+/* ============================================
+   GRILLE PORTFOLIO
+   Mise en page responsive des projets
+   ============================================ */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    border-radius: 8px;
+    overflow: hidden; /* Cache ce qui dépasse */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Effet au survol de la carte projet */
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.portfolio-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3; /* Ratio d'image constant */
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Couvre tout l'espace sans déformation */
+    transition: transform 0.3s ease;
+}
+
+/* Zoom sur l'image au survol */
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.1);
+}
+
+/* ============================================
+   OVERLAY AU SURVOL
+   Informations qui apparaissent sur l'image
+   ============================================ */
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(47, 184, 196, 0.9); /* Bleu semi-transparent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Caché par défaut */
+    transition: all 0.3s ease;
+}
+
+/* Affichage de l'overlay au survol */
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-content {
+    text-align: center;
+    color: white;
+    transform: translateY(20px); /* Animation d'entrée */
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-content {
+    transform: translateY(0); /* Position finale */
+}
+
+.portfolio-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.portfolio-content p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* ============================================
+   LIENS D'ACTION
+   Icônes de visualisation et lien externe
+   ============================================ */
+.portfolio-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.portfolio-links a {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: #2FB8C4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.portfolio-links a:hover {
+    background: #333;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ============================================
+   RESPONSIVE PORTFOLIO
+   Adaptations pour tablettes et mobiles
+   ============================================ */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 0 20px;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 28px;
+    }
+    
+    .portfolio-filters {
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-section {
+        padding: 60px 0;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 24px;
+    }
+    
+    .portfolio-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-content h3 {
+        font-size: 18px;
+    }
+    
+    .portfolio-content p {
+        font-size: 13px;
+    }
+}
