@@ -3,10 +3,10 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation active
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
     
-    // Fonction pour mettre à jour la navigation active
     function updateActiveNav() {
         let current = '';
         const scrollPosition = window.scrollY + 100;
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Si on est en haut de page, activer "Accueil"
+        // Activer "Accueil" en haut de page
         if (window.scrollY < 100) {
             navLinks.forEach(link => link.classList.remove('active'));
             const accueilLink = document.querySelector('.nav-links a[href="#accueil"]');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Smooth scroll pour les liens de navigation
+    // Smooth scroll
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -44,11 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Mettre à jour l'état actif
                 navLinks.forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Scroll smooth
                 window.scrollTo({
                     top: targetSection.offsetTop - 70,
                     behavior: 'smooth'
@@ -57,17 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Écouter le scroll pour mettre à jour la navigation
     window.addEventListener('scroll', updateActiveNav);
-    
-    // Initialiser au chargement
     updateActiveNav();
 
     // ============================================
     // CARROUSEL / SLIDER
     // ============================================
 
-    // Données complètes du slider (images + contenu)
     const sliderData = [
         {
             image: './assets/slider/bg1.jpg',
@@ -79,36 +73,29 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'DES SOLUTIONS INNOVANTES',
             description: 'Notre équipe crée des solutions web sur mesure pour votre entreprise.'
         }
-        // Ajoutez d'autres slides ici si nécessaire
     ];
 
     let currentSlideIndex = 0;
     let autoPlayInterval;
 
-    // Fonction pour changer de slide
     function changeSlide(direction) {
         const heroImage = document.querySelector('.hero-image');
         const heroContent = document.querySelector('.hero-content');
         
-        if (!heroImage || sliderData.length <= 1) {
-            return;
-        }
+        if (!heroImage || sliderData.length <= 1) return;
         
-        // Calculer le nouvel index avec modulo pour boucler
+        // Calcul du nouvel index
         currentSlideIndex = (currentSlideIndex + direction + sliderData.length) % sliderData.length;
         
-        // Récupérer les données du slide
         const slide = sliderData[currentSlideIndex];
         
-        // Effet de transition
+        // Transition
         heroImage.style.opacity = '0';
         
         setTimeout(() => {
-            // Mettre à jour l'image ET le contenu
             heroImage.src = slide.image;
             heroImage.alt = slide.title;
             
-            // Mettre à jour le titre et la description
             if (heroContent) {
                 const titleElement = heroContent.querySelector('h1');
                 const descriptionElement = heroContent.querySelector('p');
@@ -124,11 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
             heroImage.style.opacity = '1';
         }, 500);
         
-        // Mettre à jour les indicateurs si ils existent
         updateIndicators();
     }
 
-    // Fonction pour aller directement à un slide spécifique
     function goToSlide(index) {
         if (index >= 0 && index < sliderData.length) {
             const direction = index > currentSlideIndex ? 1 : -1;
@@ -137,15 +122,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Mettre à jour les indicateurs visuels
     function updateIndicators() {
-        const indicators = document.querySelectorAll('.slider-indicators .slider-dot');
+        const indicators = document.querySelectorAll('.slider-dot');
         indicators.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlideIndex);
         });
     }
 
-    // Créer les indicateurs de slide (points en bas)
     function createIndicators() {
         if (sliderData.length <= 1) return;
         
@@ -166,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.hero-section').appendChild(indicatorsContainer);
     }
 
-    // Auto-play (défilement automatique toutes les 5 secondes)
     function startAutoPlay() {
         if (sliderData.length > 1) {
             autoPlayInterval = setInterval(() => {
@@ -179,18 +161,17 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(autoPlayInterval);
     }
 
-    // Initialisation du carrousel
     function initCarousel() {
         const prevArrow = document.querySelector('.slider-arrow.prev');
         const nextArrow = document.querySelector('.slider-arrow.next');
         const heroSection = document.querySelector('.hero-section');
         
-        // Créer les indicateurs si on a plusieurs slides
+        // Créer les indicateurs
         if (sliderData.length > 1) {
             createIndicators();
         }
         
-        // Écouter les clics sur les flèches
+        // Événements des flèches
         if (prevArrow) {
             prevArrow.addEventListener('click', () => {
                 changeSlide(-1);
@@ -213,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             heroSection.addEventListener('mouseleave', startAutoPlay);
         }
         
-        // Navigation au clavier
+        // Navigation clavier
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 changeSlide(-1);
@@ -249,17 +230,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Retirer la classe active de tous les boutons
+                // Retirer active de tous les boutons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 
-                // Ajouter la classe active au bouton cliqué
+                // Ajouter active au bouton cliqué
                 this.classList.add('active');
                 
                 const filterValue = this.getAttribute('data-filter');
                 
-                // Filtrer les projets avec animation
+                // Filtrer les projets
                 portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || itemCategory === filterValue) {
                         item.style.display = 'block';
                         setTimeout(() => {
                             item.style.opacity = '1';
@@ -278,12 +261,67 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // INITIALISATION GÉNÉRALE
+    // INITIALISATION
     // ============================================
 
     // Initialiser le carrousel
     initCarousel();
     
-    // Initialiser les filtres du portfolio
+    // Initialiser les filtres portfolio
     initPortfolioFilters();
 });
+
+// ============================================
+// GESTION DU RESPONSIVE MANUEL
+// ============================================
+
+function handleResize() {
+    const heroSection = document.querySelector('.hero-section');
+    const heroImage = document.querySelector('.hero-image');
+    
+    if (window.innerWidth < 768) {
+        // Mobile
+        if (heroSection) {
+            heroSection.style.height = '50vh';
+            heroSection.style.minHeight = '350px';
+        }
+        if (heroImage) {
+            heroImage.style.objectPosition = 'center center';
+        }
+    } else if (window.innerWidth < 1024) {
+        // Tablette
+        if (heroSection) {
+            heroSection.style.height = '60vh';
+            heroSection.style.minHeight = '400px';
+        }
+    } else {
+        // Desktop
+        if (heroSection) {
+            heroSection.style.height = '80vh';
+            heroSection.style.minHeight = '600px';
+        }
+    }
+}
+
+// Écouter le redimensionnement
+window.addEventListener('resize', handleResize);
+
+// Initialiser au chargement
+window.addEventListener('load', handleResize);
+
+// ============================================
+// POLYFILL POURObject-fit POUR IE/EDGE ANCIENS
+// ============================================
+
+if ('objectFit' in document.documentElement.style === false) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.hero-image, .portfolio-image img');
+        images.forEach(function(image) {
+            const src = image.src;
+            image.style.backgroundImage = 'url(' + src + ')';
+            image.style.backgroundSize = 'cover';
+            image.style.backgroundPosition = 'center';
+            image.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'' + image.width + '\' height=\'' + image.height + '\'%3E%3C/svg%3E';
+        });
+    });
+}
