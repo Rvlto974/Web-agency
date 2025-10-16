@@ -1,5 +1,5 @@
 /* ============================================
-   1. RESET CSS - TOUJOURS EN PREMIER
+    1. RESET CSS - TOUJOURS EN PREMIER
    ============================================ */
 
 * {
@@ -12,7 +12,7 @@ body {
     font-family: 'Open Sans', Arial, sans-serif;
     color: #666;
     font-weight: 400;
-    background: white;
+    background: #ffffff;
 }
 
 h1, h2, h3 {
@@ -21,7 +21,7 @@ h1, h2, h3 {
 }
 
 /* ============================================
-   2. HEADER
+    2. HEADER
    ============================================ */
 
 header {
@@ -712,4 +712,32 @@ html {
     .portfolio-content p {
         font-size: 13px;
     }
+}
+
+/* SECTION CONTACT - VERSION SIMPLE */
+.contact-section {
+    padding: 80px 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-map {
+    max-width: 1800px;
+    width: 90%; /* 90% de la largeur sur mobile */
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
